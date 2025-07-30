@@ -1,3 +1,7 @@
 *.toml
 Untitled.ipynb
+.ipynb_checkpoints
 */.ipynb_checkpoints
+*/*/Untitled.ipynb_checkpoints
+__pycache__/
+*.pyc
