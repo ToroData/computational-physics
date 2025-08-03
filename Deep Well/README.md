@@ -42,7 +42,9 @@ python -m deepwell.main
 
 ---
 
-## Table 3.1. Energy levels of the infinitely deep potential well
+## Output Examples
+
+### Table 3.1. Energy levels of the infinitely deep potential well
 
 | n | N = 5   | N = 8   | N = 12  | N = 16  | Exact   |
 | - | ------- | ------- | ------- | ------- | ------- |
@@ -53,3 +55,6 @@ python -m deepwell.main
 | 5 | 87.7392 | 63.6045 | 61.6862 | 61.6850 | 61.6850 |
 
 > As expected, the approximation improves with increasing basis size $N$, converging toward the exact analytical values.
+
+### Comparison of variational vs analytical wavefunctions
+![Wavefunctions comparison](./img/wavefunctions_comparison.png)
