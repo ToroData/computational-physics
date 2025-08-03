@@ -32,8 +32,8 @@ def compute_hamiltonian_matrix(N: int) -> np.ndarray:
     return H
 
 def solve_generalized_eigenproblem(H: np.ndarray, S: np.ndarray) -> np.ndarray:
-    E, _ = eigh(H, S)
-    return E
+    E, C = eigh(H, S)
+    return E, C
 
 def analytical_energies(num_levels: int) -> list[float]:
     return [(n**2 * np.pi**2) / 4 for n in range(1, num_levels+1)]
@@ -43,13 +43,15 @@ def generate_energy_table(
     num_levels: int = 5
     ) -> tuple[dict[int, np.ndarray], list[float]]:
     results = {}
+    eigenvectors = {}
     for N in N_values:
         S = compute_overlap_matrix(N)
         H = compute_hamiltonian_matrix(N)
-        E = solve_generalized_eigenproblem(H, S)
+        E, C = solve_generalized_eigenproblem(H, S)
         results[N] = E[:num_levels]
+        eigenvectors[N] = C[:, :num_levels]
     exact = analytical_energies(num_levels)
-    return results, exact
+    return results, exact, eigenvectors
 
 def print_table(results: dict[int, np.ndarray], exact: list[float]) -> None:
     Ns: list[int] = sorted(results.keys())
