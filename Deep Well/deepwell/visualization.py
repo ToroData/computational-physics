@@ -23,6 +23,10 @@ def analytical_solution(n, x):
     else:           # odd → cos
         return np.cos(k_n * x)
 
+def ecm(psi_variational: np.ndarray, psi_exact: np.ndarray, x: np.ndarray) -> float:
+    """Calculate the error in the wavefunction using the ECM"""
+    return np.sqrt(np.trapz((psi_variational - psi_exact)**2, x))
+
 def plot_all_wavefunctions_grid(
     eigenvectors: dict[int, np.ndarray],
     max_states: int = 5
@@ -61,7 +65,7 @@ def plot_all_wavefunctions_grid(
             ax.plot(x, psi_exact, '--', label="Analytical", alpha=0.8)
             ax.plot(x, psi_variational - psi_exact, ':', color='gray', alpha=0.6, label="Δψ (error)")
 
-            ecm = np.sqrt(np.trapz((psi_variational - psi_exact)**2, x))
+            ecm_value = ecm(psi_variational, psi_exact, x)
             if row == 0:
                 ax.set_title(f"N = {N}")
             if col == 0:
@@ -72,7 +76,7 @@ def plot_all_wavefunctions_grid(
             
             ax.text(
                 0.95, 0.90,
-                f"ECM = {ecm:.2e}",
+                f"ECM = {ecm_value:.2e}",
                 transform=ax.transAxes,
                 fontsize=9,
                 ha='right',
