@@ -5,3 +5,5 @@ Untitled.ipynb
 */*/Untitled.ipynb_checkpoints
 __pycache__/
 *.pyc
+*.benchmarks
+*.pytest_cache
