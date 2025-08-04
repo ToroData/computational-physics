@@ -1,0 +1,9 @@
+import numpy as np
+
+ALPHAS = np.array([
+    13.00773,
+    1.962079,
+    0.444529,
+    0.1219492
+])
+
